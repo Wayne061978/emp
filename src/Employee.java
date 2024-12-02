@@ -1,16 +1,20 @@
 import java.util.Objects;
 
 public class Employee {
-    private String firstName;
-    private String lastName;
-    private String title;
-    private double payRate;
+    protected String firstName;
+    protected String lastName;
+    protected String title;
+    protected double payRate;
 
     public Employee(String firstName, String lastName, String title, double payRate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.payRate = payRate;
+    }
+
+    public double calculateSalary() {
+        return 0.0;
     }
 
     public String getFirstName() {
@@ -21,8 +25,6 @@ public class Employee {
         this.firstName = firstName;
     }
 
-
-
     public String getLastName() {
         return lastName;
     }
@@ -31,8 +33,6 @@ public class Employee {
         this.lastName = lastName;
     }
 
-
-
     public String getTitle() {
         return title;
     }
@@ -40,8 +40,6 @@ public class Employee {
     public void setTitle(String title) {
         this.title = title;
     }
-
-
 
     public double getPayRate() {
         return payRate;
@@ -54,6 +52,8 @@ public class Employee {
     public double calculateWeeklySalary(){
         return payRate * 40;
     }
+
+
 
     public String toString() {
         return firstName + " " + lastName + ", " + title + ", " + "$" + payRate;
