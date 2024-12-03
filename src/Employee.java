@@ -1,10 +1,15 @@
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Employee {
     protected String firstName;
     protected String lastName;
     protected String title;
     protected double payRate;
+
+    public Employee() {
+
+    }
 
     public Employee(String firstName, String lastName, String title, double payRate) {
         this.firstName = firstName;
@@ -51,6 +56,70 @@ public class Employee {
 
     public double calculateWeeklySalary(){
         return payRate * 40;
+    }
+
+    public void inputEmployee(){
+        Scanner scanner = new Scanner(System.in);
+        Employee employee = null;
+
+        System.out.print("Enter employee type (salary/hourly/commission): ");
+        String empType = scanner.nextLine().toLowerCase();
+
+        if (empType.equals("salary")) {
+            System.out.print("Enter employee first name: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Enter employee last name: ");
+            String lastName = scanner.nextLine();
+            System.out.print("Enter employee title: ");
+            String title = scanner.nextLine();
+            System.out.print("Enter employee annual salary: ");
+            double annualSalary = scanner.nextDouble();
+
+            employee = new SalaryEmp(firstName, lastName, title, annualSalary);
+
+        }else if (empType.equals("hourly")) {
+            System.out.print("Enter employee first name: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Enter employee last name: ");
+            String lastName = scanner.nextLine();
+            System.out.print("Enter employee title: ");
+            String title = scanner.nextLine();
+            System.out.print("Enter employee hourly rate: ");
+            double hourlyRate = scanner.nextDouble();
+            System.out.print("Hours worked: ");
+            double hoursWorked = scanner.nextDouble();
+
+            employee = new HourlyEmp(firstName, lastName, title, hourlyRate, hoursWorked);
+
+        }else if (empType.equals("commission")) {
+            System.out.print("Enter employee first name: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Enter employee last name: ");
+            String lastName = scanner.nextLine();
+            System.out.print("Enter employee title: ");
+            String title = scanner.nextLine();
+            System.out.print("Enter employee payRate: ");
+            double payRate = scanner.nextDouble();
+            System.out.print("Enter employee sales: ");
+            double sales = scanner.nextDouble();
+
+            employee = new CommEmp(firstName, lastName, title, payRate, sales);
+
+        }else {
+            System.out.print("Invalid employee type.");
+            return;
+        }
+        if (employee instanceof SalaryEmp) {
+            ((SalaryEmp) employee).display();
+
+        }else if (employee instanceof HourlyEmp) {
+            ((HourlyEmp) employee).display();
+        }else if (employee instanceof CommEmp) {
+            ((CommEmp) employee).display();
+        }
+
+
+        scanner.close();
     }
 
 
